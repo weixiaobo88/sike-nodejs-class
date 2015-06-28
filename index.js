@@ -1,8 +1,10 @@
 var Class = (function () {
-  function Class() {
+  function Class(obj) {
     return function(a, b){
       this.a = a;
       this.b = b;
+      this.getA = obj.getA;
+      this.getB = obj.getB;
     };
   }
 
