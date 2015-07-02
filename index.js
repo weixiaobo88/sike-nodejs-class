@@ -1,13 +1,13 @@
-var Class = (function () {
-  function Class(obj) {
-    if(obj.hasOwnProperty('initialize')) {
-      return obj.initialize;
-    }
-    return function() {
+function Class(obj) {
+  var fn = obj.initialize || (function(){});
+
+  for(var key in obj) {
+    if(key != 'initialize') {
+      fn.prototype[key] = obj[key];
     }
   }
 
-  return Class;
-})();
+  return fn;
+};
 
 module.exports = Class;
